@@ -33,6 +33,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_native_splash: ^2.4.6
+  font_awesome_flutter: ^10.10.0
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:

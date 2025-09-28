@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/constants.dart';
+import 'package:e_commerce_app/views/lets_get_started_view.dart';
 import 'package:e_commerce_app/widgets/gender_button.dart';
 import 'package:flutter/material.dart';
 
@@ -47,13 +48,23 @@ class FirstViewContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GenderButton(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    LetsGetStartedView.id,
+                  );
+                },
                 color: Colors.grey.shade100,
                 gender: 'Men',
                 textColor: Colors.blueGrey,
               ),
               GenderButton(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    LetsGetStartedView.id,
+                  );
+                },
                 color: kPrimaryColor,
                 gender: 'Women',
                 textColor: Colors.white,
@@ -63,11 +74,19 @@ class FirstViewContainer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Text(
-            "Skip",
-            style: TextStyle(
-              fontSize: 22,
-              color: Colors.grey,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                LetsGetStartedView.id,
+              );
+            },
+            child: Text(
+              "Skip",
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.grey,
+              ),
             ),
           ),
         ],
