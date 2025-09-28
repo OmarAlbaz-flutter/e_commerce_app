@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/views/verification_code_view.dart';
 import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
 import 'package:e_commerce_app/widgets/custom_text_field.dart';
@@ -83,7 +84,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
             ),
             CustomBottomContainer(
-              onTap: () {},
+              onTap: () {
+                if (formKey.currentState!.validate()) {
+                  Navigator.of(context).pushNamed(
+                    VerificationCodeView.id,
+                  );
+                }
+              },
               text: "Confirm Mail",
             ),
           ],

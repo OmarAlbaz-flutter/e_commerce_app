@@ -4,6 +4,7 @@ import 'package:e_commerce_app/views/login_view.dart';
 import 'package:e_commerce_app/views/sign_up_view.dart';
 import 'package:e_commerce_app/views/start_up_view.dart';
 import 'package:e_commerce_app/views/terms_conditions_view.dart';
+import 'package:e_commerce_app/views/verification_code_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -31,6 +32,7 @@ class ECommerceApp extends StatelessWidget {
         LoginView.id: (context) => LoginView(),
         TermsConditionsView.id: (context) => TermsConditionsView(),
         ForgotPasswordView.id: (context) => ForgotPasswordView(),
+        VerificationCodeView.id : (context) => VerificationCodeView(),
       },
       initialRoute: StartUpView.id,
     );
