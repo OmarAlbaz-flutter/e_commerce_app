@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/views/reset_password_view.dart';
 import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
 import 'package:e_commerce_app/widgets/code_boxes_widget.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
@@ -57,7 +58,9 @@ class VerificationCode extends StatelessWidget {
             ),
           ),
           CustomBottomContainer(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(ResetPasswordView.id);
+            },
             text: "Confirm Code",
           ),
         ],

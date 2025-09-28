@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/views/forgot_password_view.dart';
 import 'package:e_commerce_app/views/lets_get_started_view.dart';
 import 'package:e_commerce_app/views/login_view.dart';
+import 'package:e_commerce_app/views/reset_password_view.dart';
 import 'package:e_commerce_app/views/sign_up_view.dart';
 import 'package:e_commerce_app/views/start_up_view.dart';
 import 'package:e_commerce_app/views/terms_conditions_view.dart';
@@ -32,7 +33,8 @@ class ECommerceApp extends StatelessWidget {
         LoginView.id: (context) => LoginView(),
         TermsConditionsView.id: (context) => TermsConditionsView(),
         ForgotPasswordView.id: (context) => ForgotPasswordView(),
-        VerificationCodeView.id : (context) => VerificationCodeView(),
+        VerificationCodeView.id: (context) => VerificationCodeView(),
+        ResetPasswordView.id: (context) => ResetPasswordView(),
       },
       initialRoute: StartUpView.id,
     );
