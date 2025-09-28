@@ -7,7 +7,7 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText,
     super.key,
     required this.hintText,
-    this.controller,
+    this.controller, required this.labelText,
   });
 
   final String hintText;
@@ -15,6 +15,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool? obscureText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final String labelText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -25,12 +26,12 @@ class CustomTextFormField extends StatelessWidget {
       cursorColor: Colors.black,
       style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
-        labelText: hintText,
+        labelText: labelText,
         labelStyle: const TextStyle(color: Colors.grey),
-        border: const UnderlineInputBorder(),
-        
-        focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey), 
+        border: const OutlineInputBorder(),
+
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey),
         ),
         // suffixIcon: Icon(
         //   Icons.check,

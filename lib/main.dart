@@ -1,6 +1,9 @@
+import 'package:e_commerce_app/views/forgot_password_view.dart';
 import 'package:e_commerce_app/views/lets_get_started_view.dart';
+import 'package:e_commerce_app/views/login_view.dart';
 import 'package:e_commerce_app/views/sign_up_view.dart';
 import 'package:e_commerce_app/views/start_up_view.dart';
+import 'package:e_commerce_app/views/terms_conditions_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -24,7 +27,10 @@ class ECommerceApp extends StatelessWidget {
       routes: {
         StartUpView.id: (context) => StartUpView(),
         LetsGetStartedView.id: (context) => LetsGetStartedView(),
-        SignUpView.id: (context) => SignUpView()
+        SignUpView.id: (context) => SignUpView(),
+        LoginView.id: (context) => LoginView(),
+        TermsConditionsView.id: (context) => TermsConditionsView(),
+        ForgotPasswordView.id: (context) => ForgotPasswordView(),
       },
       initialRoute: StartUpView.id,
     );

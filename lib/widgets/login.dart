@@ -1,34 +1,33 @@
-import 'package:e_commerce_app/views/login_view.dart';
+import 'package:e_commerce_app/views/forgot_password_view.dart';
 import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
 import 'package:e_commerce_app/widgets/custom_text_field.dart';
 import 'package:e_commerce_app/widgets/custom_text_startup.dart';
+import 'package:e_commerce_app/widgets/terms_and_conditions_text.dart';
 import 'package:flutter/material.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _LoginState extends State<Login> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction;
-  String? username, password, email;
+  String? username, password;
   bool isLoading = false;
   bool isChecked = false;
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
 
   @override
   void dispose() {
     usernameController.dispose();
     passwordController.dispose();
-    emailController.dispose();
     super.dispose();
   }
 
@@ -45,10 +44,13 @@ class _SignUpState extends State<SignUp> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  const SizedBox(height: 80),
-                  const BackArrowWidget(),
-                  const CustomTextStartUp(text: "Sign Up"),
-                  const SizedBox(height: 200),
+                  SizedBox(height: 80),
+                  BackArrowWidget(),
+                  CustomTextStartUp(
+                    text: "Welcome",
+                  ),
+                  Text('Please enter your data to contiue'),
+                  SizedBox(height: 200),
 
                   // Username
                   CustomTextFormField(
@@ -86,27 +88,29 @@ class _SignUpState extends State<SignUp> {
                     hintText: 'Enter Your Password',
                     labelText: 'Password',
                   ),
+
                   SizedBox(
                     height: 10,
                   ),
-                  // Email
-                  CustomTextFormField(
-                    controller: emailController,
-                    validator: (value) {
-                      if (value?.isEmpty ?? true) {
-                        return 'Enter Your Email';
-                      }
-                      return null;
-                    },
-                    onChanged: (value) {
-                      email = value;
-                      formKey.currentState!.validate();
-                    },
-                    hintText: 'Enter Your Email',
-                    labelText: 'Email Address',
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(ForgotPasswordView.id);
+                        },
+                        child: Text(
+                          "Forgot Password?",
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,19 +128,19 @@ class _SignUpState extends State<SignUp> {
                     ],
                   ),
 
-                  SizedBox(height: 200),
+                  SizedBox(height: 150),
+                  TermsAndConditions(),
+                  SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
             CustomBottomContainer(
               onTap: () {
-                if (formKey.currentState!.validate()) {
-                  Navigator.of(context).pushNamed(
-                    LoginView.id,
-                  );
-                }
+                if (formKey.currentState!.validate()) {}
               },
-              text: "Sign Up",
+              text: "Login",
             ),
           ],
         ),

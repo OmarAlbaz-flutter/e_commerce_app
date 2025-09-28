@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/views/login_view.dart';
 import 'package:e_commerce_app/views/sign_up_view.dart';
 import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
@@ -68,7 +69,11 @@ class LetsGetStarted extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        LoginView.id,
+                      );
+                    },
                     child: Text(
                       " Signin",
                       style: TextStyle(
