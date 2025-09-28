@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/helper/sweep_gradient.dart';
-import 'package:e_commerce_app/widgets/first_view_container.dart';
+import 'package:e_commerce_app/widgets/startup_first_view_container.dart';
 import 'package:flutter/material.dart';
 
 class StartUpFirstView extends StatelessWidget {

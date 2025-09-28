@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/views/lets_get_started_view.dart';
+import 'package:e_commerce_app/views/sign_up_view.dart';
 import 'package:e_commerce_app/views/start_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -23,6 +24,7 @@ class ECommerceApp extends StatelessWidget {
       routes: {
         StartUpView.id: (context) => StartUpView(),
         LetsGetStartedView.id: (context) => LetsGetStartedView(),
+        SignUpView.id: (context) => SignUpView()
       },
       initialRoute: StartUpView.id,
     );

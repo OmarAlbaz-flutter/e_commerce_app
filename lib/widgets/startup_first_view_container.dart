@@ -49,8 +49,7 @@ class FirstViewContainer extends StatelessWidget {
             children: [
               GenderButton(
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
+                  Navigator.of(context).pushNamed(
                     LetsGetStartedView.id,
                   );
                 },
@@ -60,8 +59,7 @@ class FirstViewContainer extends StatelessWidget {
               ),
               GenderButton(
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
+                  Navigator.of(context).pushNamed(
                     LetsGetStartedView.id,
                   );
                 },
@@ -76,8 +74,7 @@ class FirstViewContainer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(
-                context,
+              Navigator.of(context).pushNamed(
                 LetsGetStartedView.id,
               );
             },
