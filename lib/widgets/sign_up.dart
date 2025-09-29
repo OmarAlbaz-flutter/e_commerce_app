@@ -1,9 +1,12 @@
+import 'package:e_commerce_app/helper/custom_snackbar.dart';
 import 'package:e_commerce_app/views/login_view.dart';
 import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
 import 'package:e_commerce_app/widgets/custom_text_field.dart';
 import 'package:e_commerce_app/widgets/custom_text_startup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -34,113 +37,150 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      autovalidateMode: autovalidateMode,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  const SizedBox(height: 80),
-                  const BackArrowWidget(),
-                  const CustomTextStartUp(text: "Sign Up"),
-                  const SizedBox(height: 200),
+    return ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: Form(
+        key: formKey,
+        autovalidateMode: autovalidateMode,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 80),
+                    const BackArrowWidget(),
+                    const CustomTextStartUp(text: "Sign Up"),
+                    const SizedBox(height: 200),
 
-                  // Username
-                  CustomTextFormField(
-                    controller: usernameController,
-                    validator: (value) {
-                      if (value?.isEmpty ?? true) {
-                        return 'Enter Your Username';
-                      }
-                      return null;
-                    },
-                    onChanged: (value) {
-                      username = value;
-                      formKey.currentState!.validate();
-                    },
-                    hintText: 'Enter Your Username',
-                    labelText: "UserName",
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  // Password
-                  CustomTextFormField(
-                    controller: passwordController,
-                    validator: (value) {
-                      if (value?.isEmpty ?? true) {
-                        return 'Enter Your Password';
-                      }
-                      return null;
-                    },
-                    onChanged: (value) {
-                      password = value;
-                      formKey.currentState!.validate();
-                    },
-                    obscureText: true,
-                    hintText: 'Enter Your Password',
-                    labelText: 'Password',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  // Email
-                  CustomTextFormField(
-                    controller: emailController,
-                    validator: (value) {
-                      if (value?.isEmpty ?? true) {
-                        return 'Enter Your Email';
-                      }
-                      return null;
-                    },
-                    onChanged: (value) {
-                      email = value;
-                      formKey.currentState!.validate();
-                    },
-                    hintText: 'Enter Your Email',
-                    labelText: 'Email Address',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Remember me"),
-                      Checkbox(
-                        value: isChecked,
-                        onChanged: (value) {
-                          setState(() {});
-                          isChecked = value!;
-                        },
-                        checkColor: Colors.green,
-                        fillColor: WidgetStatePropertyAll(Colors.white),
-                      ),
-                    ],
-                  ),
+                    // Username
+                    CustomTextFormField(
+                      controller: usernameController,
+                      // validator: (value) {
+                      //   if (value?.isEmpty ?? true) {
+                      //     return 'Enter Your Username';
+                      //   }
+                      //   return null;
+                      // },
+                      onChanged: (value) {
+                        username = value;
+                        // formKey.currentState!.validate();
+                      },
+                      hintText: 'Enter Your Username',
+                      labelText: "UserName",
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
 
-                  SizedBox(height: 200),
-                ],
+                    // Email
+                    CustomTextFormField(
+                      controller: emailController,
+                      validator: (value) {
+                        if (value?.isEmpty ?? true) {
+                          return 'Enter Your Email';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        email = value;
+                        formKey.currentState!.validate();
+                      },
+                      hintText: 'Enter Your Email',
+                      labelText: 'Email Address',
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Password
+                    CustomTextFormField(
+                      controller: passwordController,
+                      validator: (value) {
+                        if (value?.isEmpty ?? true) {
+                          return 'Enter Your Password';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        password = value;
+                        formKey.currentState!.validate();
+                      },
+                      obscureText: true,
+                      hintText: 'Enter Your Password',
+                      labelText: 'Password',
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Remember me"),
+                        Checkbox(
+                          value: isChecked,
+                          onChanged: (value) {
+                            isChecked = value!;
+                            setState(() {});
+                          },
+                          checkColor: Colors.green,
+                          fillColor: WidgetStatePropertyAll(Colors.white),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 200),
+                  ],
+                ),
               ),
-            ),
-            CustomBottomContainer(
-              onTap: () {
-                if (formKey.currentState!.validate()) {
-                  Navigator.of(context).pushNamed(
-                    LoginView.id,
-                  );
-                }
-              },
-              text: "Sign Up",
-            ),
-          ],
+              CustomBottomContainer(
+                onTap: () async {
+                  if (formKey.currentState!.validate()) {
+                    isLoading = true;
+                    setState(() {});
+                    try {
+                      await registerUser();
+                      Navigator.of(context).pushReplacementNamed(
+                        LoginView.id,
+                      );
+                      usernameController.clear();
+                      emailController.clear();
+                      passwordController.clear();
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'weak-password') {
+                        customSnackBar(context,
+                            text: 'The password provided is too weak.');
+                      } else if (e.code == 'email-already-in-use') {
+                        customSnackBar(
+                          context,
+                          text: 'The account already exists for that email.',
+                        );
+                      }
+                    } catch (e) {
+                      customSnackBar(context, text: e.toString());
+                    }
+                    isLoading = false;
+                    setState(() {});
+                  } else {
+                    return;
+                  }
+                },
+                text: "Sign Up",
+              ),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Future<void> registerUser() async {
+    final credential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email!,
+      password: password!,
     );
   }
 }
