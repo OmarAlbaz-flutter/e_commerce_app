@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/views/discover_view.dart';
 import 'package:e_commerce_app/views/login_view.dart';
 import 'package:e_commerce_app/views/sign_up_view.dart';
 import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
@@ -50,7 +51,9 @@ class LetsGetStarted extends StatelessWidget {
                 height: 10,
               ),
               SignUpMethodsContainer(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, DiscoverView.id);
+                },
                 containerColor: Color(0xffeb4235),
                 icon: FontAwesomeIcons.google,
                 text: "Google",
