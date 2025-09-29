@@ -58,15 +58,15 @@ class _SignUpState extends State<SignUp> {
                     // Username
                     CustomTextFormField(
                       controller: usernameController,
-                      // validator: (value) {
-                      //   if (value?.isEmpty ?? true) {
-                      //     return 'Enter Your Username';
-                      //   }
-                      //   return null;
-                      // },
+                      validator: (value) {
+                        if (value?.isEmpty ?? true) {
+                          return 'Enter Your Username';
+                        }
+                        return null;
+                      },
                       onChanged: (value) {
                         username = value;
-                        // formKey.currentState!.validate();
+                        formKey.currentState!.validate();
                       },
                       hintText: 'Enter Your Username',
                       labelText: "UserName",
@@ -182,5 +182,6 @@ class _SignUpState extends State<SignUp> {
       email: email!,
       password: password!,
     );
+    await credential.user!.updateDisplayName(username);
   }
 }
