@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/widgets/custom_icon_button.dart';
+import 'package:e_commerce_app/views/widgets/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class TermsConditions extends StatelessWidget {

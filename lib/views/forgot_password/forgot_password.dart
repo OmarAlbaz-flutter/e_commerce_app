@@ -1,9 +1,9 @@
 import 'package:e_commerce_app/helper/custom_snackbar.dart';
-import 'package:e_commerce_app/views/login_view.dart';
-import 'package:e_commerce_app/widgets/custom_icon_button.dart';
-import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
-import 'package:e_commerce_app/widgets/custom_text_field.dart';
-import 'package:e_commerce_app/widgets/custom_text_startup.dart';
+import 'package:e_commerce_app/views/auth_views/Login/login_view.dart';
+import 'package:e_commerce_app/views/widgets/custom_icon_button.dart';
+import 'package:e_commerce_app/views/widgets/custom_app_bottom_container.dart';
+import 'package:e_commerce_app/views/widgets/custom_text_field.dart';
+import 'package:e_commerce_app/views/startup_view/custom_text_startup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';

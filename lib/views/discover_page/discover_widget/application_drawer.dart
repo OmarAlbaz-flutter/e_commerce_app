@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/constants.dart';
 import 'package:e_commerce_app/models/drawe_item_model.dart';
-import 'package:e_commerce_app/widgets/custom_list_tile.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/custom_list_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

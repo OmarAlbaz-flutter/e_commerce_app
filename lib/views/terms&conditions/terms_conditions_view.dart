@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/widgets/terms_conditions.dart';
+import 'package:e_commerce_app/views/terms&conditions/terms_conditions.dart';
 import 'package:flutter/material.dart';
 
 class TermsConditionsView extends StatelessWidget {

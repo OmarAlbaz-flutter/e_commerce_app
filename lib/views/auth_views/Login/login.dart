@@ -1,37 +1,36 @@
 import 'package:e_commerce_app/helper/custom_snackbar.dart';
-import 'package:e_commerce_app/views/login_view.dart';
-import 'package:e_commerce_app/widgets/custom_icon_button.dart';
-import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
-import 'package:e_commerce_app/widgets/custom_text_field.dart';
-import 'package:e_commerce_app/widgets/custom_text_startup.dart';
+import 'package:e_commerce_app/views/forgot_password/forgot_password_view.dart';
+import 'package:e_commerce_app/views/widgets/custom_icon_button.dart';
+import 'package:e_commerce_app/views/widgets/custom_app_bottom_container.dart';
+import 'package:e_commerce_app/views/widgets/custom_text_field.dart';
+import 'package:e_commerce_app/views/startup_view/custom_text_startup.dart';
+import 'package:e_commerce_app/views/terms&conditions/terms_and_conditions_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _LoginState extends State<Login> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction;
-  String? username, password, email;
+  String? email, password;
   bool isLoading = false;
   bool isChecked = false;
 
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
-    usernameController.dispose();
-    passwordController.dispose();
     emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -50,37 +49,20 @@ class _SignUpState extends State<SignUp> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   children: [
-                    const SizedBox(height: 80),
+                    SizedBox(height: 80),
                     CustomIconButton(
                       icon: Icons.arrow_back,
                       onTap: () {
                         Navigator.pop(context);
                       },
                     ),
-                    const CustomTextStartUp(text: "Sign Up"),
-                    const SizedBox(height: 200),
+                    CustomTextStartUp(
+                      text: "Welcome",
+                    ),
+                    Text('Please enter your data to contiue'),
+                    SizedBox(height: 200),
 
                     // Username
-                    CustomTextFormField(
-                      controller: usernameController,
-                      validator: (value) {
-                        if (value?.isEmpty ?? true) {
-                          return 'Enter Your Username';
-                        }
-                        return null;
-                      },
-                      onChanged: (value) {
-                        username = value;
-                        formKey.currentState!.validate();
-                      },
-                      hintText: 'Enter Your Username',
-                      labelText: "UserName",
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-
-                    // Email
                     CustomTextFormField(
                       controller: emailController,
                       validator: (value) {
@@ -94,7 +76,7 @@ class _SignUpState extends State<SignUp> {
                         formKey.currentState!.validate();
                       },
                       hintText: 'Enter Your Email',
-                      labelText: 'Email Address',
+                      labelText: "Email Address",
                     ),
                     SizedBox(
                       height: 10,
@@ -121,6 +103,26 @@ class _SignUpState extends State<SignUp> {
                       height: 10,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed(ForgotPasswordView.id);
+                          },
+                          child: Text(
+                            "Forgot Password?",
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Remember me"),
@@ -136,7 +138,11 @@ class _SignUpState extends State<SignUp> {
                       ],
                     ),
 
-                    SizedBox(height: 200),
+                    SizedBox(height: 150),
+                    TermsAndConditions(),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
@@ -146,33 +152,29 @@ class _SignUpState extends State<SignUp> {
                     isLoading = true;
                     setState(() {});
                     try {
-                      await registerUser();
-                      Navigator.of(context).pushReplacementNamed(
-                        LoginView.id,
-                      );
-                      usernameController.clear();
+                      await loginUser();
+                      Navigator.of(context).popUntil((route) => route.isFirst);
                       emailController.clear();
                       passwordController.clear();
                     } on FirebaseAuthException catch (e) {
-                      if (e.code == 'weak-password') {
+                      if (e.code == 'user-not-found') {
                         customSnackBar(context,
-                            text: 'The password provided is too weak.');
-                      } else if (e.code == 'email-already-in-use') {
-                        customSnackBar(
-                          context,
-                          text: 'The account already exists for that email.',
-                        );
+                            text: 'No user found for that email.');
+                      } else if (e.code == 'wrong-password') {
+                        customSnackBar(context,
+                            text: 'Wrong password provided for that user.');
                       }
                     } catch (e) {
                       customSnackBar(context, text: e.toString());
                     }
+
                     isLoading = false;
                     setState(() {});
                   } else {
                     return;
                   }
                 },
-                text: "Sign Up",
+                text: "Login",
               ),
             ],
           ),
@@ -181,12 +183,10 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Future<void> registerUser() async {
-    final credential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  Future<void> loginUser() async {
+    final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: email!,
       password: password!,
     );
-    await credential.user!.updateDisplayName(username);
   }
 }

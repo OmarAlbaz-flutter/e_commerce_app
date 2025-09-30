@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/widgets/start_first_view.dart';
+import 'package:e_commerce_app/views/startup_view/start_first_view.dart';
 import 'package:flutter/material.dart';
 
 class StartUpView extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/constants.dart';
-import 'package:e_commerce_app/widgets/login.dart';
+import 'package:e_commerce_app/views/auth_views/Login/login.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {

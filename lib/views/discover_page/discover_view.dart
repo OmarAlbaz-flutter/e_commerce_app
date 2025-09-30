@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/constants.dart';
-import 'package:e_commerce_app/widgets/application_drawer.dart';
-import 'package:e_commerce_app/widgets/discover.dart';
-import 'package:e_commerce_app/widgets/discover_bottom_appbar.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/application_drawer.dart';
+import 'package:e_commerce_app/views/discover_page/discover.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/discover_bottom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverView extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/brand_model.dart';
+import '../../../models/brand_model.dart';
 
 class BrandListView extends StatelessWidget {
   BrandListView({super.key});

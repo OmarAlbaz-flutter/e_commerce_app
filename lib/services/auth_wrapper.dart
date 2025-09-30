@@ -1,5 +1,5 @@
-import 'package:e_commerce_app/views/discover_view.dart';
-import 'package:e_commerce_app/views/start_up_view.dart';
+import 'package:e_commerce_app/views/discover_page/discover_view.dart';
+import 'package:e_commerce_app/views/startup_view/start_up_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';

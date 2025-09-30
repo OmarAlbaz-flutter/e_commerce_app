@@ -1,8 +1,8 @@
-import 'package:e_commerce_app/widgets/brands_listview.dart';
-import 'package:e_commerce_app/widgets/clothes_listview_builder.dart';
-import 'package:e_commerce_app/widgets/discover_appbar.dart';
-import 'package:e_commerce_app/widgets/discover_search_bar.dart';
-import 'package:e_commerce_app/widgets/view_all_widget.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/brands_listview.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/clothes_listview_builder.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/discover_appbar.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/discover_search_bar.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/view_all_widget.dart';
 import 'package:flutter/material.dart';
 
 class Discover extends StatelessWidget {

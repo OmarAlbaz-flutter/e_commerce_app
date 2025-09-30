@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/constants.dart';
-import 'package:e_commerce_app/views/lets_get_started_view.dart';
-import 'package:e_commerce_app/widgets/gender_button.dart';
+import 'package:e_commerce_app/views/lets_get_started/lets_get_started_view.dart';
+import 'package:e_commerce_app/views/widgets/gender_button.dart';
 import 'package:flutter/material.dart';
 
 class FirstViewContainer extends StatelessWidget {

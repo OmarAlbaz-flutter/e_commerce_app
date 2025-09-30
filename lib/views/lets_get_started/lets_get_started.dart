@@ -1,10 +1,10 @@
-import 'package:e_commerce_app/views/discover_view.dart';
-import 'package:e_commerce_app/views/login_view.dart';
-import 'package:e_commerce_app/views/sign_up_view.dart';
-import 'package:e_commerce_app/widgets/custom_icon_button.dart';
-import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
-import 'package:e_commerce_app/widgets/custom_text_startup.dart';
-import 'package:e_commerce_app/widgets/sign_up_methods_container_widget.dart';
+import 'package:e_commerce_app/views/discover_page/discover_view.dart';
+import 'package:e_commerce_app/views/auth_views/Login/login_view.dart';
+import 'package:e_commerce_app/views/auth_views/signup/sign_up_view.dart';
+import 'package:e_commerce_app/views/widgets/custom_icon_button.dart';
+import 'package:e_commerce_app/views/widgets/custom_app_bottom_container.dart';
+import 'package:e_commerce_app/views/startup_view/custom_text_startup.dart';
+import 'package:e_commerce_app/views/auth_views/signup/sign_up_methods_container_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

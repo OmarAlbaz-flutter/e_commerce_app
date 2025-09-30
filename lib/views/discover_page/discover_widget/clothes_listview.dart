@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/widgets/clothes_card.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/clothes_card.dart';
 import 'package:flutter/material.dart';
 
 class ClothesListView extends StatelessWidget {
