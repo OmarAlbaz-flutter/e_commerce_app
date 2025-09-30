@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
-class BackArrowWidget extends StatelessWidget {
-  const BackArrowWidget({
+class CustomIconButton extends StatelessWidget {
+  const CustomIconButton({
     super.key,
+    required this.icon,
+    required this.onTap,
   });
-
+  final IconData icon;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
+      onTap: onTap,
       child: Align(
         alignment: AlignmentGeometry.centerLeft,
         child: Container(
@@ -21,7 +22,7 @@ class BackArrowWidget extends StatelessWidget {
             color: Colors.black.withAlpha(15),
           ),
           child: Icon(
-            Icons.arrow_back,
+            icon,
             color: Colors.black,
             size: 28,
           ),

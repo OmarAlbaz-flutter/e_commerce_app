@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/helper/custom_snackbar.dart';
 import 'package:e_commerce_app/views/login_view.dart';
-import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
+import 'package:e_commerce_app/widgets/custom_icon_button.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
 import 'package:e_commerce_app/widgets/custom_text_field.dart';
 import 'package:e_commerce_app/widgets/custom_text_startup.dart';
@@ -47,7 +47,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     SizedBox(
                       height: 80,
                     ),
-                    BackArrowWidget(),
+                    CustomIconButton(
+                      icon: Icons.arrow_back,
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                     CustomTextStartUp(
                       text: "Forgot Password",
                     ),
@@ -107,8 +112,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         text: "Password reset email sent! Check your inbox.",
                       );
 
-                      Navigator.of(context)
-                          .pushReplacementNamed(LoginView.id);
+                      Navigator.of(context).pushReplacementNamed(LoginView.id);
                     } on FirebaseAuthException catch (e) {
                       if (e.code == 'user-not-found') {
                         customSnackBar(context,

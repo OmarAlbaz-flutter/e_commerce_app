@@ -82,10 +82,11 @@ class AppDrawer extends StatelessWidget {
                   ),
                   SizedBox(width: 12),
                   Text(
-                    FirebaseAuth.instance.currentUser!.displayName!,
+                    FirebaseAuth.instance.currentUser!.displayName ??
+                        'Anonymous',
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,  
+                      fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),

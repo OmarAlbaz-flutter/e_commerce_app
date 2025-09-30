@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
+import 'package:e_commerce_app/widgets/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class TermsConditions extends StatelessWidget {
@@ -13,7 +13,12 @@ class TermsConditions extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 80),
-            BackArrowWidget(),
+            CustomIconButton(
+              icon: Icons.arrow_back,
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
             Text(
               "Terms and Conditions",
               style: TextStyle(

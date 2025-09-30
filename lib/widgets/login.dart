@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/helper/custom_snackbar.dart';
 import 'package:e_commerce_app/views/forgot_password_view.dart';
-import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
+import 'package:e_commerce_app/widgets/custom_icon_button.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
 import 'package:e_commerce_app/widgets/custom_text_field.dart';
 import 'package:e_commerce_app/widgets/custom_text_startup.dart';
@@ -50,7 +50,12 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: [
                     SizedBox(height: 80),
-                    BackArrowWidget(),
+                    CustomIconButton(
+                      icon: Icons.arrow_back,
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                     CustomTextStartUp(
                       text: "Welcome",
                     ),

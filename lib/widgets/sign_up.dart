@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/helper/custom_snackbar.dart';
 import 'package:e_commerce_app/views/login_view.dart';
-import 'package:e_commerce_app/widgets/back_arrow_widget.dart';
+import 'package:e_commerce_app/widgets/custom_icon_button.dart';
 import 'package:e_commerce_app/widgets/custom_bottom_container.dart';
 import 'package:e_commerce_app/widgets/custom_text_field.dart';
 import 'package:e_commerce_app/widgets/custom_text_startup.dart';
@@ -51,7 +51,12 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   children: [
                     const SizedBox(height: 80),
-                    const BackArrowWidget(),
+                    CustomIconButton(
+                      icon: Icons.arrow_back,
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                     const CustomTextStartUp(text: "Sign Up"),
                     const SizedBox(height: 200),
 
