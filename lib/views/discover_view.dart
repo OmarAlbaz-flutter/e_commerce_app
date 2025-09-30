@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/constants.dart';
 import 'package:e_commerce_app/widgets/application_drawer.dart';
 import 'package:e_commerce_app/widgets/discover.dart';
+import 'package:e_commerce_app/widgets/discover_bottom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverView extends StatelessWidget {
@@ -12,6 +13,7 @@ class DiscoverView extends StatelessWidget {
     return Scaffold(
       backgroundColor: kSecondaryColor,
       drawer: AppDrawer(),
+      bottomNavigationBar: DiscoverBottomAppBar(),
       body: const Discover(),
     );
   }
