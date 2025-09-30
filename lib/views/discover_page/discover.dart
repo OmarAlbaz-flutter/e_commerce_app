@@ -4,6 +4,7 @@ import 'package:e_commerce_app/views/discover_page/discover_widget/discover_appb
 import 'package:e_commerce_app/views/discover_page/discover_widget/discover_search_bar.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/view_all_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class Discover extends StatelessWidget {
   const Discover({super.key});
@@ -11,55 +12,76 @@ class Discover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                SizedBox(height: 80),
-                DiscoverAppBar(),
-                SizedBox(height: 20),
+              children: [
+                SizedBox(height: 5.h),
+                const DiscoverAppBar(),
+                SizedBox(height: 3.h),
                 Text(
                   "Hello",
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                SizedBox(height: 0.5.h),
                 Text(
                   "Welcome to ShopFlare",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     color: Colors.grey,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 1.h),
                 DiscoverSearchBar(),
+                SizedBox(
+                  height: 1.h,
+                )
               ],
             ),
           ),
         ),
         SliverToBoxAdapter(
-          child: ViewAllWidget(
-            leadingText: "Choose Brand",
-            onTap: () {},
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: ViewAllWidget(
+              leadingText: "Choose Brand",
+              onTap: () {},
+            ),
           ),
         ),
         SliverToBoxAdapter(
           child: SizedBox(
-            height: 80,
+            height: 12.h,
             child: BrandListView(),
           ),
         ),
         SliverToBoxAdapter(
-          child: ViewAllWidget(
-            leadingText: "New Arrival",
-            onTap: () {},
+          child: SizedBox(
+            height: 1.h,
           ),
         ),
-        ClothesListViewBuilder(),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: ViewAllWidget(
+              leadingText: "New Arrival",
+              onTap: () {},
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 3.h,
+          ),
+        ),
+        const ClothesListViewBuilder(),
       ],
     );
   }

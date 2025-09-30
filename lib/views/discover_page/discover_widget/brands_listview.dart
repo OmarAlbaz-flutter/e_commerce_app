@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import '../../../models/brand_model.dart';
 
 class BrandListView extends StatelessWidget {
@@ -16,13 +17,14 @@ class BrandListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      
       scrollDirection: Axis.horizontal,
       itemCount: brands.length,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 4.w),
       itemBuilder: (context, index) {
         return Container(
-          margin: const EdgeInsets.only(right: 12),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          margin: EdgeInsets.only(right: 5.w, top: 4.h),
+          padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
           decoration: BoxDecoration(
             color: Colors.grey.shade100,
             borderRadius: BorderRadius.circular(12),
@@ -30,24 +32,24 @@ class BrandListView extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                height: 5.h,
+                width: 12.w,
+                padding: EdgeInsets.all(5.sp),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(12),
                   color: Colors.white,
                 ),
                 child: Image.asset(
                   brands[index].logo,
-                  height: 30,
-                  width: 30,
                   fit: BoxFit.contain,
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 2.w),
               Text(
                 brands[index].name,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],

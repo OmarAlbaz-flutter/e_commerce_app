@@ -4,97 +4,79 @@ import 'package:e_commerce_app/views/discover_page/discover_widget/custom_list_t
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 class AppDrawer extends StatelessWidget {
-  AppDrawer({
-    super.key,
-  });
+  AppDrawer({super.key});
+
   final List<DrawerItem> drawerItemList = [
+    DrawerItem(text: 'Dark Mode', icon: Icons.wb_sunny_outlined, onTap: () {}),
     DrawerItem(
-      text: 'Dark Mode',
-      icon: Icons.wb_sunny_outlined,
-      onTap: () {},
-    ),
+        text: 'Account Information', icon: Icons.error_outline, onTap: () {}),
+    DrawerItem(text: 'Password', icon: Icons.lock_outline, onTap: () {}),
     DrawerItem(
-      text: 'Account Information',
-      icon: Icons.error_outline,
-      onTap: () {},
-    ),
+        text: 'Order', icon: Icons.shopping_basket_outlined, onTap: () {}),
     DrawerItem(
-      text: 'Password',
-      icon: Icons.lock_outline,
-      onTap: () {},
-    ),
-    DrawerItem(
-      text: 'Order',
-      icon: Icons.shopping_basket_outlined,
-      onTap: () {},
-    ),
-    DrawerItem(
-      text: 'My Cards',
-      icon: Icons.wallet_giftcard_outlined,
-      onTap: () {},
-    ),
-    DrawerItem(
-      text: 'Wishlist',
-      icon: FontAwesomeIcons.heart,
-      onTap: () {},
-    ),
-    DrawerItem(
-      text: 'Settings',
-      icon: Icons.settings_outlined,
-      onTap: () {},
-    ),
+        text: 'My Cards', icon: Icons.wallet_giftcard_outlined, onTap: () {}),
+    DrawerItem(text: 'Wishlist', icon: FontAwesomeIcons.heart, onTap: () {}),
+    DrawerItem(text: 'Settings', icon: Icons.settings_outlined, onTap: () {}),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Drawer(
       backgroundColor: kSecondaryColor,
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 4.w), // ✅ better than sp
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Close button
               Container(
-                height: 50,
-                width: 50,
+                height: 7.h,
+                width: 14.w,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
+                  borderRadius: BorderRadius.circular(100),
                   color: Colors.black.withAlpha(15),
                 ),
                 child: IconButton(
-                  icon: const Icon(
-                    FontAwesomeIcons.barsStaggered,
-                    color: Colors.black,
-                  ),
+                  icon: const Icon(Icons.close, color: Colors.black),
                   onPressed: () => Navigator.pop(context),
                 ),
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 3.h),
+
+              // User profile
               Row(
                 children: [
                   CircleAvatar(
-                    radius: 24,
+                    radius: 24.sp,
                     backgroundImage:
-                        AssetImage("assets/images/startup_image.png"),
+                        const AssetImage("assets/images/startup_image.png"),
                   ),
-                  SizedBox(width: 12),
-                  Text(
-                    FirebaseAuth.instance.currentUser!.displayName ??
-                        'Anonymous',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  SizedBox(width: 3.w),
+                  Expanded(
+                    child: Text(
+                      user?.displayName ?? 'Anonymous',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 3.h),
+
+              // Drawer items
               Expanded(
                 child: ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemCount: drawerItemList.length,
                   itemBuilder: (context, index) {
                     return CustomListTile(
@@ -105,31 +87,21 @@ class AppDrawer extends StatelessWidget {
                   },
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  FirebaseAuth.instance.signOut();
-                },
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.logout,
-                      color: Colors.red,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      "Logout",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ],
+
+              // Logout
+              ListTile(
+                leading: const Icon(Icons.logout, color: Colors.red),
+                title: Text(
+                  "Logout",
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red,
+                  ),
                 ),
+                onTap: () => FirebaseAuth.instance.signOut(),
               ),
-              SizedBox(
-                height: 80,
-              ),
+              SizedBox(height: 2.h),
             ],
           ),
         ),

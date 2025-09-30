@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class CustomTextStartUp extends StatelessWidget {
   const CustomTextStartUp({
@@ -12,7 +13,7 @@ class CustomTextStartUp extends StatelessWidget {
       text,
       style: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 32,
+        fontSize: 22.sp,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class CustomBottomContainer extends StatelessWidget {
   const CustomBottomContainer({
@@ -15,7 +16,7 @@ class CustomBottomContainer extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(16),
-        height: 100,
+        height: 12.h,
         width: double.infinity,
         color: kPrimaryColor,
         child: Align(

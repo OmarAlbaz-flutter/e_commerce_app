@@ -8,6 +8,7 @@ import 'package:e_commerce_app/views/terms&conditions/terms_and_conditions_text.
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:sizer/sizer.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -46,10 +47,10 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 4.w), // fixed
                 child: Column(
                   children: [
-                    SizedBox(height: 80),
+                    SizedBox(height: 5.h),
                     CustomIconButton(
                       icon: Icons.arrow_back,
                       onTap: () {
@@ -59,10 +60,13 @@ class _LoginState extends State<Login> {
                     CustomTextStartUp(
                       text: "Welcome",
                     ),
-                    Text('Please enter your data to contiue'),
-                    SizedBox(height: 200),
+                    Text(
+                      'Please enter your data to contiue',
+                      style: TextStyle(fontSize: 18.sp),
+                    ),
+                    SizedBox(height: 16.h),
 
-                    // Username
+                    // Email
                     CustomTextFormField(
                       controller: emailController,
                       validator: (value) {
@@ -78,9 +82,8 @@ class _LoginState extends State<Login> {
                       hintText: 'Enter Your Email',
                       labelText: "Email Address",
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 1.h), // fixed
+
                     // Password
                     CustomTextFormField(
                       controller: passwordController,
@@ -99,9 +102,7 @@ class _LoginState extends State<Login> {
                       labelText: 'Password',
                     ),
 
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 1.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -119,9 +120,7 @@ class _LoginState extends State<Login> {
                         )
                       ],
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    SizedBox(height: 1.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -138,11 +137,9 @@ class _LoginState extends State<Login> {
                       ],
                     ),
 
-                    SizedBox(height: 150),
+                    SizedBox(height: 25.h),
                     TermsAndConditions(),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    SizedBox(height: 1.h), // fixed
                   ],
                 ),
               ),

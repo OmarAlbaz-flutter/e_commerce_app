@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class SignUpMethodsContainer extends StatelessWidget {
   const SignUpMethodsContainer({
     super.key,
     required this.containerColor,
     required this.icon,
-    required this.text, required this.onTap,
+    required this.text,
+    required this.onTap,
   });
 
   final Color containerColor;
@@ -17,11 +19,11 @@ class SignUpMethodsContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 60,
+        height: 8.5.h,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: containerColor,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16.sp),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,16 +31,16 @@ class SignUpMethodsContainer extends StatelessWidget {
             Icon(
               icon,
               color: Colors.white,
-              size: 16,
+              size: 18.sp,
             ),
             SizedBox(
-              width: 10,
+              width: 10.sp,
             ),
             Text(
               text,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),

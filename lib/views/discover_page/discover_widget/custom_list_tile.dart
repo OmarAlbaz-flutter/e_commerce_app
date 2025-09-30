@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
@@ -16,8 +17,12 @@ class CustomListTile extends StatelessWidget {
       leading: Icon(
         icon,
         color: Colors.black,
+        size: 22.sp,
       ),
-      title: Text(text),
+      title: Text(
+        text,
+        style: TextStyle(fontSize: 18.sp),
+      ),
       onTap: onTap,
     );
   }

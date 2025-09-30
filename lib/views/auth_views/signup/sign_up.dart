@@ -7,6 +7,7 @@ import 'package:e_commerce_app/views/startup_view/custom_text_startup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:sizer/sizer.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -47,20 +48,19 @@ class _SignUpState extends State<SignUp> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 4.w),
                 child: Column(
                   children: [
-                    const SizedBox(height: 80),
+                    SizedBox(height: 5.h),
                     CustomIconButton(
                       icon: Icons.arrow_back,
                       onTap: () {
                         Navigator.pop(context);
                       },
                     ),
-                    const CustomTextStartUp(text: "Sign Up"),
-                    const SizedBox(height: 200),
+                    CustomTextStartUp(text: "Sign Up"),
+                    SizedBox(height: 20.h),
 
-                    // Username
                     CustomTextFormField(
                       controller: usernameController,
                       validator: (value) {
@@ -76,11 +76,8 @@ class _SignUpState extends State<SignUp> {
                       hintText: 'Enter Your Username',
                       labelText: "UserName",
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 1.h),
 
-                    // Email
                     CustomTextFormField(
                       controller: emailController,
                       validator: (value) {
@@ -96,9 +93,8 @@ class _SignUpState extends State<SignUp> {
                       hintText: 'Enter Your Email',
                       labelText: 'Email Address',
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 1.h), // fixed
+
                     // Password
                     CustomTextFormField(
                       controller: passwordController,
@@ -117,9 +113,7 @@ class _SignUpState extends State<SignUp> {
                       labelText: 'Password',
                     ),
 
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 1.h), // fixed
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -136,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                       ],
                     ),
 
-                    SizedBox(height: 200),
+                    SizedBox(height: 25.h),
                   ],
                 ),
               ),

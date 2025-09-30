@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class DiscoverBottomAppBar extends StatelessWidget {
   const DiscoverBottomAppBar({super.key});
@@ -9,18 +10,20 @@ class DiscoverBottomAppBar extends StatelessWidget {
       color: Colors.white,
       elevation: 8,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 0.5.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             // Home
             InkWell(
+              onTap: () {},
+              borderRadius: BorderRadius.circular(16),
               child: Padding(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(1.h),
                 child: Text(
                   "Home",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -30,27 +33,34 @@ class DiscoverBottomAppBar extends StatelessWidget {
 
             // Favorite
             InkWell(
+              onTap: () {},
+              borderRadius: BorderRadius.circular(16),
               child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Icon(Icons.favorite_outline, color: Colors.black),
+                padding: EdgeInsets.all(1.h),
+                child: Icon(Icons.favorite_outline,
+                    color: Colors.black, size: 20.sp),
               ),
             ),
 
             // Basket
             InkWell(
+              onTap: () {},
+              borderRadius: BorderRadius.circular(16),
               child: Padding(
-                padding: EdgeInsets.all(8),
-                child:
-                    Icon(Icons.shopping_basket_outlined, color: Colors.black),
+                padding: EdgeInsets.all(1.h),
+                child: Icon(Icons.shopping_basket_outlined,
+                    color: Colors.black, size: 20.sp),
               ),
             ),
 
             // Giftcard
             InkWell(
+              onTap: () {},
+              borderRadius: BorderRadius.circular(16),
               child: Padding(
-                padding: EdgeInsets.all(8),
-                child:
-                    Icon(Icons.wallet_giftcard_outlined, color: Colors.black),
+                padding: EdgeInsets.all(1.h),
+                child: Icon(Icons.wallet_giftcard_outlined,
+                    color: Colors.black, size: 20.sp),
               ),
             ),
           ],

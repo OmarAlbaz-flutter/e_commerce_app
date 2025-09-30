@@ -9,6 +9,7 @@ import 'package:e_commerce_app/views/terms&conditions/terms_conditions_view.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sizer/sizer.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -28,21 +29,25 @@ class ECommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'Inter',
-      ),
-      debugShowCheckedModeBanner: false,
-      routes: {
-        StartUpView.id: (context) => StartUpView(),
-        LetsGetStartedView.id: (context) => LetsGetStartedView(),
-        SignUpView.id: (context) => SignUpView(),
-        LoginView.id: (context) => LoginView(),
-        TermsConditionsView.id: (context) => TermsConditionsView(),
-        ForgotPasswordView.id: (context) => ForgotPasswordView(),
-        DiscoverView.id: (context) => DiscoverView(),
+    return Sizer(
+      builder: (context, orientation, screenType) {
+        return MaterialApp(
+          theme: ThemeData(
+            fontFamily: 'Inter',
+          ),
+          debugShowCheckedModeBanner: false,
+          routes: {
+            StartUpView.id: (context) => StartUpView(),
+            LetsGetStartedView.id: (context) => LetsGetStartedView(),
+            SignUpView.id: (context) => SignUpView(),
+            LoginView.id: (context) => LoginView(),
+            TermsConditionsView.id: (context) => TermsConditionsView(),
+            ForgotPasswordView.id: (context) => ForgotPasswordView(),
+            DiscoverView.id: (context) => DiscoverView(),
+          },
+          home: AuthWrapper(),
+        );
       },
-      home: AuthWrapper(),
     );
   }
 }

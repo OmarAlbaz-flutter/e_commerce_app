@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/views/discover_page/discover_widget/clothes_card.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class ClothesListView extends StatelessWidget {
   const ClothesListView({
@@ -9,7 +10,7 @@ class ClothesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 4.w),
       sliver: SliverGrid(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
@@ -17,11 +18,11 @@ class ClothesListView extends StatelessWidget {
           },
           childCount: 10,
         ),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          mainAxisSpacing: 16,
-          crossAxisSpacing: 16,
-          childAspectRatio: 0.48,
+          mainAxisSpacing: 1.h,
+          crossAxisSpacing: 1.h,
+          childAspectRatio: 0.4,
         ),
       ),
     );

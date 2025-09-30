@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class DiscoverSearchBar extends StatelessWidget {
   const DiscoverSearchBar({
@@ -12,7 +13,7 @@ class DiscoverSearchBar extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
             decoration: BoxDecoration(
               color: Colors.grey.shade100,
               borderRadius: BorderRadius.circular(12),
@@ -26,16 +27,17 @@ class DiscoverSearchBar extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 8),
+        SizedBox(width: 4.w),
         Container(
-          padding: const EdgeInsets.all(12),
+          padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: kPrimaryColor,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Icon(
+          child: Icon(
             Icons.mic,
             color: Colors.white,
+            size: 6.w,
           ),
         ),
       ],
