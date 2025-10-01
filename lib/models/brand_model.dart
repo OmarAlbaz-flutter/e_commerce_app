@@ -1,9 +1,9 @@
+import 'package:flutter/widgets.dart';
+
 class BrandModel {
-  final String name;
-  final String logo;
+  final IconData logo;
 
   BrandModel({
-    required this.name,
     required this.logo,
   });
 }

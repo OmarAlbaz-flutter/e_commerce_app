@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/cubit/products_cubit/products_cubit_cubit.dart';
 import 'package:e_commerce_app/services/auth_wrapper.dart';
 import 'package:e_commerce_app/views/auth_views/Login/login_view.dart';
 import 'package:e_commerce_app/views/auth_views/signup/sign_up_view.dart';
@@ -7,6 +8,7 @@ import 'package:e_commerce_app/views/lets_get_started/lets_get_started_view.dart
 import 'package:e_commerce_app/views/startup_view/start_up_view.dart';
 import 'package:e_commerce_app/views/terms&conditions/terms_conditions_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sizer/sizer.dart';
@@ -29,25 +31,28 @@ class ECommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-      builder: (context, orientation, screenType) {
-        return MaterialApp(
-          theme: ThemeData(
-            fontFamily: 'Inter',
-          ),
-          debugShowCheckedModeBanner: false,
-          routes: {
-            StartUpView.id: (context) => StartUpView(),
-            LetsGetStartedView.id: (context) => LetsGetStartedView(),
-            SignUpView.id: (context) => SignUpView(),
-            LoginView.id: (context) => LoginView(),
-            TermsConditionsView.id: (context) => TermsConditionsView(),
-            ForgotPasswordView.id: (context) => ForgotPasswordView(),
-            DiscoverView.id: (context) => DiscoverView(),
-          },
-          home: AuthWrapper(),
-        );
-      },
+    return BlocProvider(
+      create: (context) => DiscoverCubit(),
+      child: Sizer(
+        builder: (context, orientation, screenType) {
+          return MaterialApp(
+            theme: ThemeData(
+              fontFamily: 'Inter',
+            ),
+            debugShowCheckedModeBanner: false,
+            routes: {
+              StartUpView.id: (context) => StartUpView(),
+              LetsGetStartedView.id: (context) => LetsGetStartedView(),
+              SignUpView.id: (context) => SignUpView(),
+              LoginView.id: (context) => LoginView(),
+              TermsConditionsView.id: (context) => TermsConditionsView(),
+              ForgotPasswordView.id: (context) => ForgotPasswordView(),
+              DiscoverView.id: (context) => DiscoverView(),
+            },
+            home: AuthWrapper(),
+          );
+        },
+      ),
     );
   }
 }
