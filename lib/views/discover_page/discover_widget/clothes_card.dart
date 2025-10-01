@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/models/product_model.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/brands/brand_item_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -10,7 +11,17 @@ class ClothesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return BrandItemView(
+                productModel: productModel,
+              );
+            },
+          ),
+        );
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
