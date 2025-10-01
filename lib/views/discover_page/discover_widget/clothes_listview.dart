@@ -65,7 +65,7 @@ class ClothesListView extends StatelessWidget {
                     ),
                   );
                 },
-                childCount: 6, 
+                childCount: 6,
               ),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

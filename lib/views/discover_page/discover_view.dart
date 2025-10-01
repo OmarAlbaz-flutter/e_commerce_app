@@ -17,7 +17,7 @@ class DiscoverView extends StatefulWidget {
 class _DiscoverViewState extends State<DiscoverView> {
   @override
   void initState() {
-    BlocProvider.of<DiscoverCubit>(context).fetchAllProducts();
+    BlocProvider.of<DiscoverCubit>(context).fetchAll();
     super.initState();
   }
 

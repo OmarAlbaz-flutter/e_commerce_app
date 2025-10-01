@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/views/discover_page/discover_widget/brands_listview.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/brands/brands_listview.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/clothes_listview_builder.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/discover_appbar.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/discover_search_bar.dart';

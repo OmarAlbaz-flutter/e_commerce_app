@@ -1,10 +1,11 @@
 import 'package:e_commerce_app/cubit/products_cubit/products_cubit_cubit.dart';
+import 'package:e_commerce_app/views/discover_page/discover_widget/brands/brands_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import '../../../models/brand_model.dart';
+import '../../../../models/brand_model.dart';
 
 class BrandListView extends StatelessWidget {
   BrandListView({super.key});
@@ -30,46 +31,14 @@ class BrandListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final name = state.categories[index];
 
-                return Container(
-                  margin: EdgeInsets.only(right: 5.w, top: 2.h),
-                  padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 5.h,
-                        width: 12.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: Icon(
-                            brands[index].logo,
-                            size: 20.sp,
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 2.w),
-                      Text(
-                        name,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
+                return BrandsWidget(
+                  icon: brands[index].logo,
+                  name: name,
                 );
               },
             ),
           );
         } else if (state is DiscoverCubitLoading) {
-          // ✅ Skeleton loading as horizontal list
           return SizedBox(
             height: 12.h,
             child: ListView.builder(
