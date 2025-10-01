@@ -17,7 +17,10 @@ class BrandItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 5.h),
+
+          /// 🔹 Top row with Back & Cart icons
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomIconButton(
                 icon: Icons.arrow_back,
@@ -25,75 +28,156 @@ class BrandItem extends StatelessWidget {
                   Navigator.of(context).pop();
                 },
               ),
-              SizedBox(
-                width: 1.w,
+              CustomIconButton(
+                icon: Icons.shopping_bag_outlined,
+                onTap: () {},
               ),
-              Text(
-                productModel.category,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.sp,
+            ],
+          ),
+          SizedBox(height: 3.h),
+
+          /// 🔹 Product Image (with fav button inside stack)
+          Stack(
+            children: [
+              Center(
+                child: Container(
+                  padding: EdgeInsets.all(14.w),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(6.w),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(3.w),
+                    child: Image.network(
+                      productModel.image,
+                      height: 35.h,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 2.h,
+                right: 12.w,
+                child: CustomIconButton(
+                  icon: Icons.favorite_border,
+                  onTap: () {},
                 ),
               ),
             ],
           ),
-          SizedBox(height: 5.h),
-          Stack(children: [
-            Center(
-              child: Container(
-                padding: EdgeInsets.all(10.w),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(6.w),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(3.w),
-                  child: Image.network(
-                    productModel.image,
-                    height: 35.h,
-                    fit: BoxFit.contain,
+
+          SizedBox(height: 3.h),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(
+                  productModel.title,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              top: 4.w,
-              right: 12.w,
-              child: IconButton(
-                icon: const Icon(Icons.favorite_border, color: Colors.black54),
-                onPressed: () {},
+              Text(
+                "\$${productModel.price}",
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
-          ]),
+            ],
+          ),
+
           SizedBox(height: 3.h),
+
           Text(
-            productModel.title,
+            "Description",
             style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w600,
             ),
           ),
           SizedBox(height: 1.h),
           Text(
-            "\$${productModel.price}",
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w700,
-              color: Colors.deepPurple,
+            productModel.description,
+            style: TextStyle(fontSize: 12.sp, color: Colors.grey[700]),
+          ),
+
+          SizedBox(height: 3.h),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Reviews",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                "View All",
+                style: TextStyle(color: Colors.grey, fontSize: 12.sp),
+              ),
+            ],
+          ),
+          SizedBox(height: 1.h),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundImage: AssetImage("assets/images/startup_image.png"),
+            ),
+            title: Text("Ronald Richards"),
+            subtitle: Text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elite and ",
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "${productModel.rating?.rate ?? 'N/A'} ⭐",
+                  style: TextStyle(fontSize: 14.sp),
+                ),
+                Text(
+                  "Ratings: ${productModel.rating?.count ?? 'N/A'}",
+                  style: TextStyle(fontSize: 12.sp, color: Colors.grey),
+                ),
+              ],
             ),
           ),
-          SizedBox(height: 2.h),
-          Text(
-            productModel.description,
-            style: TextStyle(fontSize: 14.sp, color: Colors.grey[700]),
+
+          SizedBox(height: 3.h),
+
+          /// 🔹 Total Price
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Total Price (incl. VAT)",
+                style: TextStyle(fontSize: 13.sp, color: Colors.grey[600]),
+              ),
+              Text(
+                "\$${productModel.price + 5}",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.sp,
+                ),
+              ),
+            ],
           ),
-          SizedBox(height: 4.h),
+
+          SizedBox(height: 3.h),
+
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                padding: EdgeInsets.symmetric(vertical: 1.8.h),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(2.w),
                 ),
@@ -106,6 +190,7 @@ class BrandItem extends StatelessWidget {
               ),
             ),
           ),
+
           SizedBox(height: 4.h),
         ],
       ),
