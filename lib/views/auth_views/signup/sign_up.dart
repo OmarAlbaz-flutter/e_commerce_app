@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce_app/constants.dart';
 import 'package:e_commerce_app/helper/custom_snackbar.dart';
 import 'package:e_commerce_app/views/auth_views/Login/login_view.dart';
 import 'package:e_commerce_app/views/widgets/custom_icon_button.dart';
@@ -35,6 +37,8 @@ class _SignUpState extends State<SignUp> {
     emailController.dispose();
     super.dispose();
   }
+
+  CollectionReference userRef = FirebaseFirestore.instance.collection(kUser);
 
   @override
   Widget build(BuildContext context) {
@@ -182,5 +186,10 @@ class _SignUpState extends State<SignUp> {
       password: password!,
     );
     await credential.user!.updateDisplayName(username);
+    await userRef.doc(credential.user!.uid).set({
+      kUserName: username,
+      kEmail: email,
+      kId: credential.user!.uid,
+    });
   }
 }

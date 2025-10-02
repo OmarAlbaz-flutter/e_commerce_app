@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/constants.dart';
+import 'package:e_commerce_app/helper/custom_snackbar.dart';
 import 'package:e_commerce_app/models/product_model.dart';
+import 'package:e_commerce_app/views/cart_view/cart_view.dart';
 import 'package:e_commerce_app/views/widgets/custom_icon_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -11,14 +15,13 @@ class BrandItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double totalPrice = productModel.price + 5;
     return SingleChildScrollView(
       padding: EdgeInsets.all(4.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 5.h),
-
-          /// 🔹 Top row with Back & Cart icons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -30,13 +33,16 @@ class BrandItem extends StatelessWidget {
               ),
               CustomIconButton(
                 icon: Icons.shopping_bag_outlined,
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CartView()),
+                  );
+                },
               ),
             ],
           ),
           SizedBox(height: 3.h),
-
-          /// 🔹 Product Image (with fav button inside stack)
           Stack(
             children: [
               Center(
@@ -66,9 +72,7 @@ class BrandItem extends StatelessWidget {
               ),
             ],
           ),
-
           SizedBox(height: 3.h),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -90,9 +94,7 @@ class BrandItem extends StatelessWidget {
               ),
             ],
           ),
-
           SizedBox(height: 3.h),
-
           Text(
             "Description",
             style: TextStyle(
@@ -105,9 +107,7 @@ class BrandItem extends StatelessWidget {
             productModel.description,
             style: TextStyle(fontSize: 12.sp, color: Colors.grey[700]),
           ),
-
           SizedBox(height: 3.h),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -149,10 +149,7 @@ class BrandItem extends StatelessWidget {
               ],
             ),
           ),
-
           SizedBox(height: 3.h),
-
-          /// 🔹 Total Price
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -161,7 +158,7 @@ class BrandItem extends StatelessWidget {
                 style: TextStyle(fontSize: 13.sp, color: Colors.grey[600]),
               ),
               Text(
-                "\$${productModel.price + 5}",
+                "\$$totalPrice",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15.sp,
@@ -169,13 +166,33 @@ class BrandItem extends StatelessWidget {
               ),
             ],
           ),
-
           SizedBox(height: 3.h),
-
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                final user = FirebaseAuth.instance.currentUser;
+
+                try {
+                  final cartRef = FirebaseFirestore.instance
+                      .collection(kUser)
+                      .doc(user!.uid)
+                      .collection(kCart);
+
+                  await cartRef.add(
+                    {
+                      'id': productModel.id,
+                      'title': productModel.title,
+                      'price': totalPrice,
+                      'image': productModel.image,
+                    },
+                  );
+
+                  customSnackBar(context, text: "Added to cart");
+                } catch (e) {
+                  customSnackBar(context, text: "Error: $e");
+                }
+              },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 1.8.h),
                 shape: RoundedRectangleBorder(
@@ -190,7 +207,6 @@ class BrandItem extends StatelessWidget {
               ),
             ),
           ),
-
           SizedBox(height: 4.h),
         ],
       ),
