@@ -34,7 +34,6 @@ class AppDrawer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Close button
               Container(
                 height: 7.h,
                 width: 14.w,

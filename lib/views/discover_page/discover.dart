@@ -1,13 +1,27 @@
+import 'package:e_commerce_app/cubit/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/brands/brands_listview.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/clothes_listview_builder.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/discover_appbar.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/discover_search_bar.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/view_all_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-class Discover extends StatelessWidget {
+class Discover extends StatefulWidget {
   const Discover({super.key});
+
+  @override
+  State<Discover> createState() => _DiscoverState();
+}
+
+class _DiscoverState extends State<Discover> {
+  @override
+  void initState() {
+    BlocProvider.of<CartCubit>(context).getCartItem();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
