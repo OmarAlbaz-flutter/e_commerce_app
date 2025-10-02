@@ -1,8 +1,10 @@
 import 'package:e_commerce_app/constants.dart';
+import 'package:e_commerce_app/cubit/user_cubit/user_cubit.dart';
 import 'package:e_commerce_app/models/drawe_item_model.dart';
 import 'package:e_commerce_app/views/discover_page/discover_widget/custom_list_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
 
@@ -24,13 +26,11 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-
     return Drawer(
       backgroundColor: kSecondaryColor,
       child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.w), // ✅ better than sp
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -48,28 +48,38 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 3.h),
-
-              // User profile
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 24.sp,
-                    backgroundImage:
-                        const AssetImage("assets/images/startup_image.png"),
-                  ),
-                  SizedBox(width: 3.w),
-                  Expanded(
-                    child: Text(
-                      user?.displayName ?? 'Anonymous',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+              BlocBuilder<UserCubit, UserState>(
+                builder: (context, state) {
+                  if (state is UserLoading) {
+                    return CircularProgressIndicator();
+                  } else if (state is UserSuccess) {
+                    final userModel = state.userModel;
+                    return Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 24.sp,
+                          backgroundImage: NetworkImage(
+                            userModel.image,
+                          ),
+                        ),
+                        SizedBox(width: 3.w),
+                        Expanded(
+                          child: Text(
+                            userModel.userName,
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Text("No user data");
+                  }
+                },
               ),
               SizedBox(height: 3.h),
 

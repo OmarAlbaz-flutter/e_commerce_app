@@ -67,15 +67,8 @@ class _SignUpState extends State<SignUp> {
 
                     CustomTextFormField(
                       controller: usernameController,
-                      validator: (value) {
-                        if (value?.isEmpty ?? true) {
-                          return 'Enter Your Username';
-                        }
-                        return null;
-                      },
                       onChanged: (value) {
                         username = value;
-                        formKey.currentState!.validate();
                       },
                       hintText: 'Enter Your Username',
                       labelText: "UserName",
@@ -187,9 +180,11 @@ class _SignUpState extends State<SignUp> {
     );
     await credential.user!.updateDisplayName(username);
     await userRef.doc(credential.user!.uid).set({
-      kUserName: username,
+      kUserName: username ?? 'Anonymous',
       kEmail: email,
       kId: credential.user!.uid,
+      kUserImage: credential.user!.photoURL ??
+          'https://upload.wikimedia.org/wikipedia/commons/2/25/Siam_lilacpoint.jpg',
     });
   }
 }

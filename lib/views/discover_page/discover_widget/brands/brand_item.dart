@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/constants.dart';
-import 'package:e_commerce_app/helper/custom_snackbar.dart';
 import 'package:e_commerce_app/models/product_model.dart';
 import 'package:e_commerce_app/views/cart_view/cart_view.dart';
 import 'package:e_commerce_app/views/widgets/custom_icon_button.dart';
@@ -15,7 +14,7 @@ class BrandItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double totalPrice = productModel.price + 5;
+    double totalPrice = productModel.price + 5.0;
     return SingleChildScrollView(
       padding: EdgeInsets.all(4.w),
       child: Column(
@@ -187,10 +186,8 @@ class BrandItem extends StatelessWidget {
                       'image': productModel.image,
                     },
                   );
-
-                  customSnackBar(context, text: "Added to cart");
                 } catch (e) {
-                  customSnackBar(context, text: "Error: $e");
+                  e.toString();
                 }
               },
               style: ElevatedButton.styleFrom(

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/cubit/user_cubit/user_cubit.dart';
 import 'package:e_commerce_app/helper/custom_snackbar.dart';
 import 'package:e_commerce_app/views/forgot_password/forgot_password_view.dart';
 import 'package:e_commerce_app/views/widgets/custom_icon_button.dart';
@@ -7,6 +8,7 @@ import 'package:e_commerce_app/views/startup_view/custom_text_startup.dart';
 import 'package:e_commerce_app/views/terms&conditions/terms_and_conditions_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sizer/sizer.dart';
 
@@ -150,6 +152,7 @@ class _LoginState extends State<Login> {
                     setState(() {});
                     try {
                       await loginUser();
+                      BlocProvider.of<UserCubit>(context).getUserData();
                       Navigator.of(context).popUntil((route) => route.isFirst);
                       emailController.clear();
                       passwordController.clear();

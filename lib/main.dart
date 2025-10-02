@@ -1,5 +1,6 @@
-import 'package:e_commerce_app/cubit/cart_cubit/cubit/cart_cubit.dart';
+import 'package:e_commerce_app/cubit/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/cubit/products_cubit/products_cubit_cubit.dart';
+import 'package:e_commerce_app/cubit/user_cubit/user_cubit.dart';
 import 'package:e_commerce_app/services/auth_wrapper.dart';
 import 'package:e_commerce_app/views/auth_views/Login/login_view.dart';
 import 'package:e_commerce_app/views/auth_views/signup/sign_up_view.dart';
@@ -35,7 +36,8 @@ class ECommerceApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => DiscoverCubit()),
-        BlocProvider(create: (context) => CartCubit())
+        BlocProvider(create: (context) => CartCubit()),
+        BlocProvider(create: (context) => UserCubit()),
       ],
       child: Sizer(
         builder: (context, orientation, screenType) {
