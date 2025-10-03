@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/constants.dart';
 import 'package:e_commerce_app/cubit/cart_cubit/cart_cubit.dart';
+import 'package:e_commerce_app/helper/custom_snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 
 class CartItemsView extends StatefulWidget {
-  const CartItemsView({
-    super.key,
-  });
+  const CartItemsView({super.key});
 
   @override
   State<CartItemsView> createState() => _CartItemsViewState();
@@ -28,14 +28,16 @@ class _CartItemsViewState extends State<CartItemsView> {
         } else if (state is CartSuccess) {
           if (state.items.isEmpty) {
             return const Center(
-                child: Text(
-              "Cart is empty",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-            ));
+              child: Text(
+                "Cart is empty",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+              ),
+            );
           }
 
           return Column(
             children: [
+              // 🛒 CART ITEMS
               Expanded(
                 child: ListView.builder(
                   itemCount: state.items.length,
@@ -77,14 +79,67 @@ class _CartItemsViewState extends State<CartItemsView> {
                   },
                 ),
               ),
+
+             
               Padding(
                 padding: const EdgeInsets.all(16),
-                child: Text(
-                  "Total: \$${state.total}",
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      "Total: \$${state.total}",
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 2.h),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final user = FirebaseAuth.instance.currentUser;
+                        if (user == null) return;
+
+                        try {
+                          final paymentRef = FirebaseFirestore.instance
+                              .collection(kUser)
+                              .doc(user.uid)
+                              .collection(kPayment);
+
+                          await paymentRef.add({
+                            'items': state.items,
+                            'totalPrice': state.total,
+                          });
+
+                          for (final item in state.items) {
+                            await FirebaseFirestore.instance
+                                .collection(kUser)
+                                .doc(user.uid)
+                                .collection(kCart)
+                                .doc(item[kDocId])
+                                .delete();
+                          }
+
+                          context.read<CartCubit>().getCartItem();
+
+                          customSnackBar(context, text: 'Paymet Successful');
+                        } catch (e) {
+                          print(e.toString());
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 1.8.h),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(2.w),
+                        ),
+                        backgroundColor: kPrimaryColor,
+                        foregroundColor: kSecondaryColor,
+                      ),
+                      child: Text(
+                        "Cash on Delivery Process",
+                        style: TextStyle(fontSize: 16.sp),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

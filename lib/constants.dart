@@ -11,3 +11,4 @@ const kCart = 'cart';
 const kQuantity = 'quantity';
 const kDocId = 'docId';
 const kUserImage = 'UserImage';
+const kPayment = 'payment';
